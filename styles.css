@@ -1,0 +1,51 @@
+:root {
+  --ink: #edf7f5;
+  --muted: #76908f;
+  --cyan: #4de1dc;
+  --acid: #d5f35c;
+  --orange: #ff754f;
+  --red: #ff4e57;
+  --bg: #071113;
+  --panel: rgba(8, 22, 24, .78);
+  --line: rgba(132, 219, 211, .2);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--ink); }
+body { font-family: 'Space Mono', monospace; }
+button { font: inherit; }
+#game-shell { position: relative; width: 100vw; height: 100vh; min-height: 560px; overflow: hidden; background: #081618; }
+#game-stage { position: absolute; inset: 0; }
+#game-stage canvas { display: block; width: 100%; height: 100%; }
+.scanlines { position: absolute; inset: 0; pointer-events: none; opacity: .16; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.035) 3px 4px); mix-blend-mode: screen; }
+.topbar, .hud, .controls, .center-message { position: absolute; z-index: 2; }
+.topbar { top: 0; left: 0; right: 0; height: 76px; padding: 24px 34px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, rgba(4, 12, 13, .86), rgba(4, 12, 13, 0)); }
+.brand { display: flex; align-items: center; gap: 11px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; letter-spacing: 2px; font-size: 17px; }
+.brand-mark { display: grid; place-items: center; width: 23px; height: 23px; border: 1px solid var(--cyan); color: var(--cyan); font-size: 18px; line-height: 1; }
+.brand small { color: var(--muted); font: 10px 'Space Mono', monospace; letter-spacing: 1px; margin-left: 7px; }
+.match-readout { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; display: flex; align-items: center; gap: 9px; }
+.match-readout strong { color: var(--ink); font-size: 13px; margin-left: 14px; }
+.live-dot, .opponent-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 12px var(--acid); }
+.hud { bottom: 42px; width: 220px; padding: 15px 16px; border-left: 2px solid var(--cyan); background: linear-gradient(90deg, var(--panel), transparent); }
+.hud-left { left: 34px; }
+.hud-right { right: 34px; border-left: 0; border-right: 2px solid var(--orange); text-align: right; background: linear-gradient(-90deg, rgba(27,16,17,.8), transparent); }
+.label, .score-label { font-size: 9px; color: var(--muted); letter-spacing: 2px; }
+.stat-block { display: flex; align-items: baseline; gap: 7px; }
+.stat-block strong { font: 700 38px 'Barlow Condensed', sans-serif; letter-spacing: 1px; }
+.stat-block .unit { color: var(--muted); font-size: 10px; }
+.meter { height: 3px; margin: 3px 0 13px; background: rgba(77, 225, 220, .16); }
+.meter i { display: block; height: 100%; width: 100%; background: var(--cyan); transition: width .18s; }
+.ammo-stat strong { color: var(--acid); }
+.ammo-meter { background: rgba(213, 243, 92, .17); }
+.ammo-meter i { background: var(--acid); }
+.score { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin: 2px 0 10px; font: 700 34px 'Barlow Condensed', sans-serif; }
+.score strong:first-child { color: var(--cyan); }.score .enemy-score { color: var(--orange); }.score span { color: var(--muted); font-size: 18px; }
+.opponent { display: flex; justify-content: flex-end; align-items: center; gap: 8px; color: var(--ink); font-size: 10px; letter-spacing: 1px; }.opponent small { color: var(--orange); font-size: 8px; margin-left: 5px; }
+.crosshair { position: absolute; z-index: 3; top: 50%; left: 50%; width: 28px; height: 28px; transform: translate(-50%, -50%); pointer-events: none; opacity: .9; }
+.crosshair span, .crosshair i, .crosshair:before, .crosshair:after { position: absolute; background: var(--cyan); content: ''; box-shadow: 0 0 6px var(--cyan); }.crosshair span { width: 8px; height: 1px; left: 10px; top: 13px; }.crosshair i { height: 8px; width: 1px; left: 13px; top: 10px; }.crosshair:before { width: 1px; height: 5px; left: 13px; top: 0; }.crosshair:after { width: 1px; height: 5px; left: 13px; bottom: 0; }
+.hit-marker { position: absolute; left: 50%; top: 50%; z-index: 4; color: var(--acid); font-size: 26px; opacity: 0; transform: translate(-50%,-50%) scale(.7); pointer-events: none; }.hit-marker.hit { animation: hit .26s ease-out; }
+.damage-vignette { position: absolute; inset: 0; pointer-events: none; z-index: 1; box-shadow: inset 0 0 0 rgba(255,45,50,0); transition: box-shadow .12s; }.damage-vignette.flash { box-shadow: inset 0 0 100px rgba(255,45,50,.85); }
+.center-message { inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; background: radial-gradient(circle, rgba(5,16,17,.15), rgba(3,10,11,.75)); transition: opacity .35s, visibility .35s; }.center-message.hidden { opacity: 0; visibility: hidden; pointer-events: none; }.eyebrow { font-size: 10px; letter-spacing: 4px; color: var(--cyan); margin-bottom: 15px; }.center-message h1 { margin: 0; font: 800 clamp(64px, 11vw, 150px)/.75 'Barlow Condensed', sans-serif; letter-spacing: 2px; text-shadow: 7px 7px 0 rgba(77,225,220,.12); }.center-message h1 em { color: var(--acid); font-style: normal; }.center-message p { color: #aac1be; font-size: 11px; letter-spacing: 1px; margin: 24px 0 25px; }.center-message button { padding: 14px 20px 13px; color: var(--bg); background: var(--acid); border: 0; cursor: pointer; font-weight: 700; font-size: 11px; letter-spacing: 1px; transition: transform .2s, box-shadow .2s; }.center-message button:hover { transform: translateY(-2px); box-shadow: 0 5px 25px rgba(213,243,92,.3); }.center-message button span { font-size: 17px; margin-left: 14px; vertical-align: -1px; }
+.controls { bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 26px; color: var(--muted); font-size: 9px; letter-spacing: 1px; white-space: nowrap; }.controls b { color: var(--ink); margin-right: 5px; }
+@keyframes hit { 0% { opacity: 1; transform: translate(-50%,-50%) scale(.7); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(1.15); } }
+@media (max-width: 640px) { .topbar { padding: 19px 17px; height: 62px; }.brand { font-size: 14px; }.brand small { display: none; }.match-readout { font-size: 8px; }.match-readout strong { font-size: 11px; margin-left: 5px; }.hud { bottom: 45px; width: 150px; padding: 9px 10px; }.hud-left { left: 15px; }.hud-right { right: 15px; }.stat-block strong, .score { font-size: 28px; }.opponent { font-size: 8px; }.opponent small { display: none; }.controls { gap: 10px; font-size: 7px; }.center-message h1 { font-size: 76px; }.center-message p { font-size: 9px; } }

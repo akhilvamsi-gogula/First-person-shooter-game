@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEON BREACH // Arena FPS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <div id="game-stage"></div>
+    <div class="scanlines"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">+</span><span>NEON BREACH</span><small>TRIAL 07</small></div>
+      <div class="match-readout"><span class="live-dot"></span> LIVE COMBAT <strong id="timer">02:00</strong></div>
+    </header>
+
+    <section class="hud hud-left" aria-label="Player status">
+      <div class="stat-block"><span class="label">VITALS</span><strong id="health">100</strong><span class="unit">%</span></div>
+      <div class="meter"><i id="health-meter"></i></div>
+      <div class="stat-block ammo-stat"><span class="label">AMMO</span><strong id="ammo">12</strong><span class="unit">/ 48</span></div>
+      <div class="meter ammo-meter"><i id="ammo-meter"></i></div>
+    </section>
+
+    <section class="hud hud-right" aria-label="Match status">
+      <div class="score-label">ARENA SCORE</div>
+      <div class="score"><strong id="player-score">000</strong><span>—</span><strong class="enemy-score" id="enemy-score">000</strong></div>
+      <div class="opponent"><span class="opponent-dot"></span><span>ROGUE-01</span><small id="enemy-state">TRACKING</small></div>
+    </section>
+
+    <div class="crosshair" aria-hidden="true"><span></span><i></i></div>
+    <div class="hit-marker" id="hit-marker">✕</div>
+    <div class="damage-vignette" id="damage-vignette"></div>
+
+    <section class="center-message" id="message-panel">
+      <div class="eyebrow">SOLO SIMULATION / 01</div>
+      <h1 id="message-title">NEON<br><em>BREACH</em></h1>
+      <p id="message-copy">Clear the arena before the clock burns out.</p>
+      <button id="start-button">ENTER ARENA <span>→</span></button>
+    </section>
+
+    <footer class="controls">
+      <span><b>↑ ↓ ← →</b> MOVE</span><span><b>MOUSE</b> LOOK</span><span><b>SPACE</b> FIRE</span><span><b>R</b> RELOAD</span>
+    </footer>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
