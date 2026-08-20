@@ -1,4 +1,4 @@
-# NEON BREACH
+# NEON BREACH GAME
 
 A browser-based 3D first-person arena shooter built with Three.js. Enter a neon training arena, track the rogue combatant, and clear the simulation before the clock expires.
 
@@ -60,13 +60,4 @@ Click the game canvas after entering the arena to capture the mouse for FPS-styl
 
 This repository includes a GitHub Actions workflow in `.github/workflows/pages.yml`.
 
-1. Push the project to GitHub.
-2. In the repository settings, open **Pages**.
-3. Set the source to **GitHub Actions**.
-4. Push to `main` or run the workflow manually.
-
 The workflow publishes the repository root as a static site. No build command or package installation is required.
-
-## License
-
-No license has been selected yet. Add a license before accepting outside contributions or redistributing the project.
