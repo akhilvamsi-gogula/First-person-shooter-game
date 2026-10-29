@@ -4,10 +4,6 @@ A browser-based 3D first-person arena shooter built with Three.js. Enter a neon 
 
 ## Play
 
-Open the live game here after deployment:
-
-- `https://<your-github-username>.github.io/<your-repository-name>/`
-
 For local development, serve the project over HTTP because the game loads Three.js as an ES module:
 
 ```powershell
